@@ -1,0 +1,16 @@
+version: "3"
+services:
+  sub:
+    build:
+      context: ./sub  
+      dockerfile: Dockerfile
+    ports:
+      - "5550:5550"  
+    tty: true  
+    command: ["python", "subscriber.py", "--ip", "0.0.0.0"]
+  pub:
+    build:
+      context: ./pub
+      dockerfile: Dockerfile
+    tty: true  
+    command: ["python", "publisher.py", "--ip", "sub"] 
