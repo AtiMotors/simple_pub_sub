@@ -15,6 +15,7 @@ def publisher(ip="0.0.0.0", port=5550):
         idx = np.random.randint(0, imu.shape[0])
         time.sleep(1.0)
         message = imu[imu_cols].iloc[idx]
+        print(f"Sending IMU data {message}")
         socket.send_string(f"IMU {message}")
 
 if __name__ == "__main__":
